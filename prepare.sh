@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -ex
+
 # MIT License
 
 # Copyright (c) 2021 Ybrid®, a Hybrid Dynamic Live Audio Technology
@@ -30,8 +32,8 @@
 # - git clone of https://github.com/xiph/opus in directory ../opus
 # - checked iosSDKVersion and osxSDKVersion 
 
-iosSDKVersion="14.4"
-osxSDKVersion="11.1"
+iosSDKVersion="17.0"
+osxSDKVersion="14.0"
 opusDownload="https://archive.mozilla.org/pub/opus/opus-1.3.1.tar.gz"
 here=$(pwd)
 
@@ -48,6 +50,8 @@ echo "\n==========================="
 opuspath="$here/$libopusDir"
 opusArtifact=.libs/libopus.a
 opusHeaders="$opuspath/include"
+
+echo "$opuspath"
 
 tmp=./prepare
 fatLibsDest=opus-swift/libs
@@ -66,17 +70,19 @@ generateLibopus()
     logfile="$here/$tmp/generate_${host}_${arch}_$sdkname.log"
 
     cd $opuspath
-    make clean > $logfile
-    
-    if [[ $sdkname =~ "iPhone" ]]; then 
-        minversion="-miphoneos-version-min=9.0"
-    else # contains "Mac"
-        minversion="-mmacosx-version-min=10.10"
+    if [ -f Makefile ]; then
+      make clean > $logfile
     fi
-    ./configure CC=clang --enable-float-approx --disable-shared --enable-static --with-pic \
+    
+    if [[ $sdkname =~ "iPhoneSimulator" ]]; then 
+        minversion="-miphonesimulator-version-min=14.0"
+    else
+        minversion="-miphoneos-version-min=14.0"
+    fi
+    ./configure --enable-float-approx --disable-shared --enable-static --with-pic \
         --disable-extra-programs --disable-doc --host=$host \
-        CFLAGS=" -arch $arch -Ofast -flto -g -fPIE $minversion -isysroot $sdk" \
-        LDFLAGS=" -flto -fPIE $minversion" >> $logfile
+        CFLAGS="-arch $arch -Ofast -flto -g -fPIE $minversion -isysroot $sdk" \
+        LDFLAGS="-flto -fPIE $minversion" >> $logfile
 
     make >> $logfile
 
@@ -86,66 +92,42 @@ generateLibopus()
     lipo -i "$tmp/$product"
 }
 
-xcodePlatforms="/Applications/Xcode.app/Contents/Developer/Platforms"
+xcodePlatforms="/Applications/Xcode-15.0.0.15A240d.app/Contents/Developer/Platforms"
 sdkSimulator="$xcodePlatforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator$iosSDKVersion.sdk"
 sdkPhone="/$xcodePlatforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS$iosSDKVersion.sdk"
 sdkMac="/$xcodePlatforms/MacOSX.platform/Developer/SDKs/MacOSX$osxSDKVersion.sdk"
 
-cd $opuspath
-make distclean
+#cd $opuspath
+#make distclean
 cd $here
 rm -rf $tmp
 mkdir -p $tmp
+mkdir -p opus-swift/libs
+mkdir -p opus-swift/include
 
-
-fatProductIos="libopus_ios.a"
+fatProductIos="libopus_device_ios.a"
+fatProductSimulatorIos="libopus_simulator_ios.a"
 echo "\n==========================="
 echo "generate $fatProductIos ..."
-generateLibopus "x86_64-apple-darwin" "x86_64" $sdkSimulator
-generateLibopus "x86_64-apple-darwin" "i386" $sdkSimulator
-generateLibopus "arm-apple-darwin" "armv7" $sdkPhone
+generateLibopus "arm-apple-darwin" "x86_64" $sdkSimulator
+generateLibopus "arm-apple-darwin" "arm64" $sdkSimulator
 generateLibopus "arm-apple-darwin" "arm64" $sdkPhone
 cd $tmp
-products=`ls | grep libopus | grep iPhone`
+products=`ls | grep libopus | grep iPhoneOS`
 echo "generating $fatProductIos from ${products} ..." 
 lipo -create ${products} -output $fatProductIos
+products=`ls | grep libopus | grep iPhoneSimulator`
+echo "generating $fatProductSimulatorIos from ${products} ..." 
+lipo -create ${products} -output $fatProductSimulatorIos
 cd $here
 cp -v $tmp/$fatProductIos $fatLibsDest
 lipo -info $fatLibsDest/$fatProductIos
+cp -v $tmp/$fatProductSimulatorIos $fatLibsDest
+lipo -info $fatLibsDest/$fatProductSimulatorIos
 echo "$fatLibsDest/$fatProductIos generated."
+echo "$fatLibsDest/$fatProductSimulatorIos generated."
 echo "\n==========================="
 
-
-fatProductMac="libopus_osx.a"
-echo "\n==========================="
-echo "generate $fatProductMac ..."
-generateLibopus "x86_64-apple-darwin20.2.0" "x86_64" $sdkMac
-generateLibopus "aarch64-apple-darwin20.0.0" "arm64" $sdkMac
-cd $tmp
-products=`ls | grep libopus | grep Mac`
-echo "generating $fatProductMac from ${products} ..." 
-lipo -create ${products} -output $fatProductMac
-cd $here
-cp -v $tmp/$fatProductMac $fatLibsDest
-lipo -info $fatLibsDest/$fatProductMac
-echo "$fatLibsDest/$fatProductMac ready."
-echo "\n==========================="
-
-
-fatProductCatalyst="libopus_catalyst.a"
-echo "\n==========================="
-echo "generate $fatProductCatalyst ..."
-generateLibopus "x86_64-apple-darwin20.2.0" "x86_64h" $sdkMac
-cd $tmp
-products=`ls | grep libopus | grep x86_64h`
-echo "generating $fatProductCatalyst from ${products} ..." 
-lipo -create ${products} -output $fatProductCatalyst
-cd $here
-cp -v $tmp/$fatProductCatalyst $fatLibsDest
-lipo -info $fatLibsDest/$fatProductCatalyst
-echo "$fatLibsDest/$fatProductCatalyst ready."
-echo "\n==========================="
-echo "generating libraries done."
 
 echo "\n==========================="
 cd $here

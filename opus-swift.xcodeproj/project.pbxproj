@@ -336,24 +336,24 @@
 				ORGANIZATIONNAME = "Viv Labs, Inc.";
 				TargetAttributes = {
 					1725463225BE0DC8004EC45A = {
-						DevelopmentTeam = PF7PNM95XY;
+						DevelopmentTeam = 53Q6R32WPB;
 					};
 					1762BBB125B81D180045655C = {
-						DevelopmentTeam = PF7PNM95XY;
+						DevelopmentTeam = 53Q6R32WPB;
 						LastSwiftMigration = 1230;
 					};
 					17EE827E25CBF086002F15B3 = {
 						CreatedOnToolsVersion = 12.4;
-						DevelopmentTeam = PF7PNM95XY;
+						DevelopmentTeam = 53Q6R32WPB;
 						ProvisioningStyle = Automatic;
 					};
 					17EE835925CBFD1B002F15B3 = {
-						DevelopmentTeam = PF7PNM95XY;
+						DevelopmentTeam = 53Q6R32WPB;
 						ProvisioningStyle = Automatic;
 					};
 					D4D822D31DC9612800946CA2 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = PF7PNM95XY;
+						DevelopmentTeam = 53Q6R32WPB;
 						LastSwiftMigration = 1230;
 						ProvisioningStyle = Automatic;
 					};
@@ -486,7 +486,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -522,7 +522,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -557,7 +557,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -593,7 +593,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -627,7 +627,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "opus-swiftUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -650,7 +650,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "opus-swiftUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -670,7 +670,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "opus-swiftUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @loader_path";
@@ -697,7 +697,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "opus-swiftUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @loader_path";
@@ -851,7 +851,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -884,7 +884,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PF7PNM95XY;
+				DEVELOPMENT_TEAM = 53Q6R32WPB;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

@@ -24,7 +24,6 @@ opus-?.?.?
 prepare
 opus-swift/libs/libopus_*.a
 opus-swift/include/*
-*.xcframework
 *.zip
 *.gz
 tmp

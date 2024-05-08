@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -ex
+
 # MIT License
 
 # Copyright (c) 2021 Ybrid®, a Hybrid Dynamic Live Audio Technology
@@ -27,6 +29,8 @@
 # Usage: no parameters, settings mostly defined in xcode project
 # 
 
+set -ex
+
 opts="SKIP_INSTALL=NO BUILD_LIBRARIES_FOR_DISTRIBUTION=YES" 
 
 dd=./DerivedData
@@ -46,6 +50,8 @@ pj="-project opus-swift.xcodeproj"
 platform=iphoneos
 scheme=opus_ios
 echo "building for $platform..."
+rm -f opus-swift/libs/libopus_ios.a
+cp -pv opus-swift/libs/libopus_device_ios.a opus-swift/libs/libopus_ios.a
 xcodebuild archive $pj -scheme $scheme -destination="iOS" -sdk $platform -derivedDataPath $dd \
     -archivePath "$archivesPath/$platform.xcarchive" $opts > "build-$platform.log"
 cp -R "$archivesPath/$platform.xcarchive/$generatedPath" "$builtPath/Archive-$platform"
@@ -53,23 +59,9 @@ cp -R "$archivesPath/$platform.xcarchive/$generatedPath" "$builtPath/Archive-$pl
 platform=iphonesimulator
 scheme=opus_ios
 echo "building for $platform..."
+rm -f opus-swift/libs/libopus_ios.a
+cp -pv opus-swift/libs/libopus_simulator_ios.a opus-swift/libs/libopus_ios.a
 xcodebuild archive $pj -scheme $scheme -destination="iOS Simulator" -sdk $platform -derivedDataPath $dd \
-    -archivePath "$archivesPath/$platform.xcarchive" $opts > "build-$platform.log"
-cp -R "$archivesPath/$platform.xcarchive/$generatedPath" "$builtPath/Archive-$platform"
-
-# Mac Catalyst needs Xcode >= 11.0
-platform=maccatalyst
-scheme=opus_catalyst
-echo "building for $platform..."
-#-sdk macosx ?
-xcodebuild archive $pj -scheme $scheme -archs="x86_64h" -destination "generic/platform=macOS,variant=Mac Catalyst,name=Any Mac" -derivedDataPath $dd \
-    -archivePath "$archivesPath/$platform.xcarchive" $opts > "build-$platform.log"
-cp -R "$archivesPath/$platform.xcarchive/$generatedPath" "$builtPath/Archive-$platform"
-
-platform=macosx
-scheme=opus_macos
-echo "building for $platform..."
-xcodebuild archive $pj -scheme $scheme -destination='My Mac' -sdk $platform -derivedDataPath $dd \
     -archivePath "$archivesPath/$platform.xcarchive" $opts > "build-$platform.log"
 cp -R "$archivesPath/$platform.xcarchive/$generatedPath" "$builtPath/Archive-$platform"
 

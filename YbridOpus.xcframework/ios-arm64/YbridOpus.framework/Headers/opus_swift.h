@@ -1,5 +1,5 @@
 //
-// Config.xcconfig
+// opus_swift.h
 // opus-swift
 //
 // Copyright (c) 2021 nacamar GmbH - Ybrid®, a Hybrid Dynamic Live Audio Technology
@@ -23,19 +23,14 @@
 // SOFTWARE.
 //
 
-// Configuration settings file format documentation can be found at:
-// https://help.apple.com/xcode/#/dev745c5c974
+#include <TargetConditionals.h>
 
-// Product Version, PLEASE CHANGE HERE to affect all targets
-MARKETING_VERSION = 0.8.1
-// Build number, PLEASE CHANGE HERE to affect all targets
-CURRENT_PROJECT_VERSION = 4
+#if TARGET_OS_IPHONE
+    @import UIKit;
+#else
+    @import AppKit;
+#endif
 
+#include "opus.h"
+#include "opus_multistream.h"
 
-ARCHS = arm64 x86_64 x86_64h
-SUPPORTED_PLATFORMS = iphoneos iphonesimulator
-
-IPHONEOS_DEPLOYMENT_TARGET = 14.0
-MACOSX_DEPLOYMENT_TARGET = 13.15
-
-SWIFT_VERSION = 4.0
